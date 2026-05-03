@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Personal portfolio website",
   "scripts": {
+    "dev": "npx serve .",
     "start": "npx serve ."
   },
   "private": true
