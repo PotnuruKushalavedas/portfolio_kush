@@ -213,6 +213,7 @@
         }
 
         .hero-text h1 {
+            color: var(--text-primary);
             margin-bottom: 0.85rem;
         }
 
@@ -775,13 +776,23 @@
             background: var(--card-bg);
         }
 
+        .projects-carousel {
+            position: relative;
+            overflow: hidden;
+            padding: 0 3.5rem;
+        }
+
         .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            display: flex;
             gap: 1.5rem;
+            transition: transform 0.5s ease;
+            will-change: transform;
         }
 
         .project-card {
+            flex: 0 0 calc((100% - 4.5rem) / 4);
+            min-width: 0;
+            min-height: 430px;
             background: var(--primary-bg);
             border-radius: 16px;
             overflow: hidden;
@@ -797,7 +808,7 @@
         }
 
         .project-image {
-            height: 180px;
+            height: 160px;
             background: linear-gradient(135deg, var(--accent-light) 0%, var(--secondary-bg) 100%);
             display: flex;
             align-items: center;
@@ -806,6 +817,12 @@
             color: var(--accent);
             position: relative;
             overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .project-image::before {
@@ -823,6 +840,19 @@
 
         .project-content {
             padding: 1.75rem;
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+        }
+
+        .project-status {
+            display: block;
+            margin-bottom: 0.75rem;
+            color: var(--accent);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
         }
 
         .project-content h3 {
@@ -833,6 +863,62 @@
             font-size: 0.9375rem;
             margin-bottom: 1.25rem;
             line-height: 1.6;
+        }
+
+        .project-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: auto;
+        }
+
+        .project-actions .btn {
+            padding: 0.625rem 1rem;
+        }
+
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            z-index: 2;
+            width: 42px;
+            height: 42px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            background: rgba(45, 42, 38, 0.78);
+            color: white;
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+            transform: translateY(-50%);
+            transition: var(--transition);
+        }
+
+        .carousel-control:hover:not(:disabled) {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .carousel-control:disabled {
+            cursor: not-allowed;
+            opacity: 0.35;
+        }
+
+        .carousel-control.prev {
+            left: 0.75rem;
+        }
+
+        .carousel-control.next {
+            right: 0.75rem;
+        }
+
+        .github-projects-link {
+            display: flex;
+            width: fit-content;
+            margin: 2rem auto 0;
         }
 
         .project-tags {
@@ -1179,7 +1265,11 @@
             }
 
             .projects-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: none;
+            }
+
+            .project-card {
+                flex-basis: calc((100% - 1.5rem) / 2);
             }
 
             .certification-grid {
@@ -1295,6 +1385,22 @@
             .project-image {
                 height: 140px;
                 font-size: 2.5rem;
+            }
+
+            .projects-carousel {
+                padding: 0 2.75rem;
+            }
+
+            .project-card {
+                flex-basis: calc(100% - 0px);
+            }
+
+            .carousel-control.prev {
+                left: 0.25rem;
+            }
+
+            .carousel-control.next {
+                right: 0.25rem;
             }
 
             .project-content {
@@ -1541,55 +1647,63 @@
                 <h2>Projects</h2>
                 <p>Showcasing my practical work and technical implementations.</p>
             </div>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">�</div>
-                    <div class="project-content">
-                        <h3>FinanceBuddy</h3>
-                        <p>A financial management application to track expenses, budgets, and financial goals with an intuitive interface.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">JavaScript</span>
-                            <span class="project-tag">Web App</span>
+            <div class="projects-carousel">
+                <button class="carousel-control prev" type="button" aria-label="Previous projects">&lsaquo;</button>
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <div class="project-image"><img src="assets/projects/kraftkala.jpeg" alt="KraftKala artisan marketplace preview"></div>
+                        <div class="project-content">
+                            <span class="project-status">Featured &middot; E-commerce</span>
+                            <h3>KraftKala</h3>
+                            <p>A full-stack artisan marketplace connecting Indian craftsmen and handmade product sellers with customers worldwide.</p>
+                            <div class="project-tags"><span class="project-tag">HTML5</span><span class="project-tag">CSS3</span><span class="project-tag">JavaScript</span><span class="project-tag">PHP</span><span class="project-tag">MySQL</span></div>
+                            <div class="project-actions"><a href="https://github.com/PotnuruKushalavedas/kraftkala" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">&rarr; Code</a></div>
                         </div>
-                        <a href="https://github.com/PotnuruKushalavedas/FinanceBuddy" target="_blank" class="btn btn-secondary btn-sm">View Code →</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">🎓</div>
-                    <div class="project-content">
-                        <h3>StudentHub</h3>
-                        <p>A comprehensive platform for students to access resources, track progress, and collaborate on projects.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">TypeScript</span>
-                            <span class="project-tag">Web App</span>
+                    </article>
+                    <article class="project-card">
+                        <div class="project-image"><div aria-hidden="true">&#9745;</div></div>
+                        <div class="project-content">
+                            <span class="project-status">Full Stack &middot; Ongoing</span>
+                            <h3>TaskFlow</h3>
+                            <p>A full-stack task management app with priorities, focus lists, productivity insights, search, filters, and import/export.</p>
+                            <div class="project-tags"><span class="project-tag">React</span><span class="project-tag">Vite</span><span class="project-tag">Node.js</span><span class="project-tag">Express</span><span class="project-tag">MySQL</span></div>
+                            <div class="project-actions"><a href="https://github.com/PotnuruKushalavedas/Taskflow" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">&rarr; Code</a><a href="https://taskflow-three-azure.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">&rarr; Live</a></div>
                         </div>
-                        <a href="https://github.com/PotnuruKushalavedas/Studenthub" target="_blank" class="btn btn-secondary btn-sm">View Code →</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">💊</div>
-                    <div class="project-content">
-                        <h3>PharmaWatch</h3>
-                        <p>A pharmaceutical tracking and management system for monitoring inventory and prescriptions.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Development</span>
+                    </article>
+                    <article class="project-card">
+                        <div class="project-image"><div aria-hidden="true">&#128196;</div></div>
+                        <div class="project-content">
+                            <span class="project-status">AI / ML</span>
+                            <h3>AI Resume Builder</h3>
+                            <p>A resume builder interface with a login dashboard and resume-building workflow, developed as a React and Vite application.</p>
+                            <div class="project-tags"><span class="project-tag">React</span><span class="project-tag">Vite</span><span class="project-tag">JavaScript</span></div>
+                            <div class="project-actions"><a href="https://github.com/PotnuruKushalavedas/Ai_resume-builder" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">&rarr; Code</a></div>
                         </div>
-                        <a href="https://github.com/PotnuruKushalavedas/PharmaWatch" target="_blank" class="btn btn-secondary btn-sm">View Code →</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">📄</div>
-                    <div class="project-content">
-                        <h3>HTML Training</h3>
-                        <p>Practice exercises and projects for learning HTML fundamentals and best practices.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">HTML</span>
-                            <span class="project-tag">Learning</span>
+                    </article>
+                    <article class="project-card">
+                        <div class="project-image"><img src="assets/projects/sneakerworld.png" alt="SneakerWorld comparison app preview"></div>
+                        <div class="project-content">
+                            <span class="project-status">Featured &middot; Utility</span>
+                            <h3>SneakerWorld</h3>
+                            <p>A web application for sneaker lovers to compare sneakers and find options within a budget.</p>
+                            <div class="project-tags"><span class="project-tag">TypeScript</span><span class="project-tag">Next.js</span><span class="project-tag">CSS</span></div>
+                            <div class="project-actions"><a href="https://github.com/PotnuruKushalavedas/sneakerworld" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">&rarr; Code</a><a href="https://sneakerworld-nine.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">&rarr; Live</a></div>
                         </div>
-                        <a href="https://github.com/PotnuruKushalavedas/Html-training" target="_blank" class="btn btn-secondary btn-sm">View Code →</a>
-                    </div>
+                    </article>
+                    <article class="project-card">
+                        <div class="project-image"><img src="assets/projects/Nutrilife.png" alt="NutriLife nutrition website preview"></div>
+                        <div class="project-content">
+                            <span class="project-status">Health &middot; Web App</span>
+                            <h3>NutriLife</h3>
+                            <p>A nutrition website with food guidance, balanced diet resources, and age-group information.</p>
+                            <div class="project-tags"><span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">JavaScript</span></div>
+                            <div class="project-actions"><a href="https://github.com/PotnuruKushalavedas/NutriLife" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">&rarr; Code</a></div>
+                        </div>
+                    </article>
                 </div>
+                <button class="carousel-control next" type="button" aria-label="Next projects">&rsaquo;</button>
             </div>
+            <a href="https://github.com/PotnuruKushalavedas" target="_blank" rel="noopener noreferrer" class="btn btn-primary github-projects-link">More Projects on GitHub &rarr;</a>
         </div>
     </section>
 
@@ -1671,6 +1785,55 @@
                 }
             });
         });
+
+        const projectsCarousel = document.querySelector('.projects-carousel');
+        const projectsGrid = document.querySelector('.projects-grid');
+        const projectCards = document.querySelectorAll('.project-card');
+        const previousProjectsButton = document.querySelector('.carousel-control.prev');
+        const nextProjectsButton = document.querySelector('.carousel-control.next');
+        let projectIndex = 0;
+        let touchStartX = 0;
+
+        const getProjectsPerView = () => {
+            if (window.innerWidth <= 480) return 1;
+            if (window.innerWidth <= 1024) return 2;
+            return 4;
+        };
+
+        const updateProjectsCarousel = () => {
+            const projectsPerView = getProjectsPerView();
+            const maxProjectIndex = Math.max(0, projectCards.length - projectsPerView);
+            projectIndex = Math.min(projectIndex, maxProjectIndex);
+            const cardWidth = projectCards[0].getBoundingClientRect().width;
+            const cardGap = parseFloat(getComputedStyle(projectsGrid).gap) || 0;
+            projectsGrid.style.transform = `translateX(-${projectIndex * (cardWidth + cardGap)}px)`;
+            previousProjectsButton.disabled = projectIndex === 0;
+            nextProjectsButton.disabled = projectIndex >= maxProjectIndex;
+        };
+
+        previousProjectsButton.addEventListener('click', () => {
+            projectIndex -= 1;
+            updateProjectsCarousel();
+        });
+
+        nextProjectsButton.addEventListener('click', () => {
+            projectIndex += 1;
+            updateProjectsCarousel();
+        });
+
+        projectsCarousel.addEventListener('touchstart', event => {
+            touchStartX = event.changedTouches[0].screenX;
+        }, { passive: true });
+
+        projectsCarousel.addEventListener('touchend', event => {
+            const touchDistance = event.changedTouches[0].screenX - touchStartX;
+            if (Math.abs(touchDistance) < 40) return;
+            projectIndex += touchDistance < 0 ? 1 : -1;
+            updateProjectsCarousel();
+        }, { passive: true });
+
+        window.addEventListener('resize', updateProjectsCarousel);
+        updateProjectsCarousel();
     </script>
 </body>
 </html>
