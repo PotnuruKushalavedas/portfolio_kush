@@ -780,6 +780,7 @@
             position: relative;
             overflow: hidden;
             padding: 0 3.5rem;
+            user-select: none;
         }
 
         .projects-grid {
@@ -787,12 +788,19 @@
             gap: 1.5rem;
             transition: transform 0.5s ease;
             will-change: transform;
+            touch-action: none;
+            cursor: grab;
+        }
+
+        .projects-grid.is-dragging {
+            cursor: grabbing;
+            transition: none;
         }
 
         .project-card {
-            flex: 0 0 calc((100% - 4.5rem) / 4);
+            flex: 0 0 calc((100% - 3rem) / 3.5);
             min-width: 0;
-            min-height: 430px;
+            min-height: 410px;
             background: var(--primary-bg);
             border-radius: 16px;
             overflow: hidden;
@@ -805,37 +813,6 @@
         .project-card:hover {
             box-shadow: 0 8px 30px var(--shadow-hover);
             transform: translateY(-4px);
-        }
-
-        .project-image {
-            height: 160px;
-            background: linear-gradient(135deg, var(--accent-light) 0%, var(--secondary-bg) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: var(--accent);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .project-image::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.3) 50%, transparent 60%);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
-        }
-
-        .project-card:hover .project-image::before {
-            transform: translateX(100%);
         }
 
         .project-content {
@@ -853,6 +830,32 @@
             font-weight: 700;
             letter-spacing: 0.1em;
             text-transform: uppercase;
+        }
+
+        .project-title-row {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-title-row h3 {
+            margin-bottom: 0;
+        }
+
+        .project-title-link {
+            display: inline-flex;
+            flex-shrink: 0;
+            color: var(--text-primary);
+            font-size: 1.25rem;
+            line-height: 1.3;
+            transition: var(--transition);
+        }
+
+        .project-title-link:hover {
+            color: var(--accent);
+            transform: translate(2px, -2px);
         }
 
         .project-content h3 {
@@ -1650,54 +1653,67 @@
             <div class="projects-carousel">
                 <button class="carousel-control prev" type="button" aria-label="Previous projects">&lsaquo;</button>
                 <div class="projects-grid">
-                    <article class="project-card">
-                        <div class="project-image"><img src="assets/projects/kraftkala.jpeg" alt="KraftKala artisan marketplace preview"></div>
+                            <article class="project-card">
                         <div class="project-content">
                             <span class="project-status">Featured &middot; E-commerce</span>
-                            <h3>KraftKala</h3>
+                            <div class="project-title-row"><h3>KraftKala</h3><a class="project-title-link" href="https://github.com/PotnuruKushalavedas/kraftkala" target="_blank" rel="noopener noreferrer" aria-label="Open KraftKala project">&#8599;</a></div>
                             <p>A full-stack artisan marketplace connecting Indian craftsmen and handmade product sellers with customers worldwide.</p>
                             <div class="project-tags"><span class="project-tag">HTML5</span><span class="project-tag">CSS3</span><span class="project-tag">JavaScript</span><span class="project-tag">PHP</span><span class="project-tag">MySQL</span></div>
                             <div class="project-actions"><a href="https://github.com/PotnuruKushalavedas/kraftkala" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">&rarr; Code</a></div>
                         </div>
                     </article>
                     <article class="project-card">
-                        <div class="project-image"><div aria-hidden="true">&#9745;</div></div>
                         <div class="project-content">
                             <span class="project-status">Full Stack &middot; Ongoing</span>
-                            <h3>TaskFlow</h3>
+                            <div class="project-title-row"><h3>TaskFlow</h3><a class="project-title-link" href="https://github.com/PotnuruKushalavedas/Taskflow" target="_blank" rel="noopener noreferrer" aria-label="Open TaskFlow project">&#8599;</a></div>
                             <p>A full-stack task management app with priorities, focus lists, productivity insights, search, filters, and import/export.</p>
                             <div class="project-tags"><span class="project-tag">React</span><span class="project-tag">Vite</span><span class="project-tag">Node.js</span><span class="project-tag">Express</span><span class="project-tag">MySQL</span></div>
-                            <div class="project-actions"><a href="https://github.com/PotnuruKushalavedas/Taskflow" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">&rarr; Code</a><a href="https://taskflow-three-azure.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">&rarr; Live</a></div>
+                            <div class="project-actions"><a href="https://github.com/PotnuruKushalavedas/Taskflow" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">&rarr; Code</a></div>
                         </div>
                     </article>
                     <article class="project-card">
-                        <div class="project-image"><div aria-hidden="true">&#128196;</div></div>
                         <div class="project-content">
-                            <span class="project-status">AI / ML</span>
-                            <h3>AI Resume Builder</h3>
+                            <span class="project-status">AI / ML &middot; Ongoing</span>
+                            <div class="project-title-row"><h3>AI Resume Builder</h3><a class="project-title-link" href="https://github.com/PotnuruKushalavedas/Ai_resume-builder" target="_blank" rel="noopener noreferrer" aria-label="Open AI Resume Builder project">&#8599;</a></div>
                             <p>A resume builder interface with a login dashboard and resume-building workflow, developed as a React and Vite application.</p>
                             <div class="project-tags"><span class="project-tag">React</span><span class="project-tag">Vite</span><span class="project-tag">JavaScript</span></div>
                             <div class="project-actions"><a href="https://github.com/PotnuruKushalavedas/Ai_resume-builder" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">&rarr; Code</a></div>
                         </div>
                     </article>
                     <article class="project-card">
-                        <div class="project-image"><img src="assets/projects/sneakerworld.png" alt="SneakerWorld comparison app preview"></div>
                         <div class="project-content">
                             <span class="project-status">Featured &middot; Utility</span>
-                            <h3>SneakerWorld</h3>
+                            <div class="project-title-row"><h3>SneakerWorld</h3><a class="project-title-link" href="https://github.com/PotnuruKushalavedas/sneakerworld" target="_blank" rel="noopener noreferrer" aria-label="Open SneakerWorld project">&#8599;</a></div>
                             <p>A web application for sneaker lovers to compare sneakers and find options within a budget.</p>
                             <div class="project-tags"><span class="project-tag">TypeScript</span><span class="project-tag">Next.js</span><span class="project-tag">CSS</span></div>
-                            <div class="project-actions"><a href="https://github.com/PotnuruKushalavedas/sneakerworld" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">&rarr; Code</a><a href="https://sneakerworld-nine.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">&rarr; Live</a></div>
+                            <div class="project-actions"><a href="https://github.com/PotnuruKushalavedas/sneakerworld" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">&rarr; Code</a></div>
                         </div>
                     </article>
                     <article class="project-card">
-                        <div class="project-image"><img src="assets/projects/Nutrilife.png" alt="NutriLife nutrition website preview"></div>
                         <div class="project-content">
                             <span class="project-status">Health &middot; Web App</span>
-                            <h3>NutriLife</h3>
+                            <div class="project-title-row"><h3>NutriLife</h3><a class="project-title-link" href="https://github.com/PotnuruKushalavedas/NutriLife" target="_blank" rel="noopener noreferrer" aria-label="Open NutriLife project">&#8599;</a></div>
                             <p>A nutrition website with food guidance, balanced diet resources, and age-group information.</p>
                             <div class="project-tags"><span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">JavaScript</span></div>
                             <div class="project-actions"><a href="https://github.com/PotnuruKushalavedas/NutriLife" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">&rarr; Code</a></div>
+                        </div>
+                    </article>
+                    <article class="project-card">
+                        <div class="project-content">
+                            <span class="project-status">Full Stack &middot; Student Platform</span>
+                            <div class="project-title-row"><h3>StudentHub</h3><a class="project-title-link" href="https://github.com/PotnuruKushalavedas/Studenthub" target="_blank" rel="noopener noreferrer" aria-label="Open StudentHub project">&#8599;</a></div>
+                            <p>A full-stack student dashboard for managing academic activities, tracking progress, and building a professional profile.</p>
+                            <div class="project-tags"><span class="project-tag">Next.js</span><span class="project-tag">React</span><span class="project-tag">TypeScript</span><span class="project-tag">Tailwind CSS</span><span class="project-tag">Supabase</span></div>
+                            <div class="project-actions"><a href="https://github.com/PotnuruKushalavedas/Studenthub" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">&rarr; Code</a></div>
+                        </div>
+                    </article>
+                    <article class="project-card">
+                        <div class="project-content">
+                            <span class="project-status">Utility &middot; Ongoing</span>
+                            <div class="project-title-row"><h3>Skincare Dashboard</h3><a class="project-title-link" href="https://github.com/PotnuruKushalavedas/skincare" target="_blank" rel="noopener noreferrer" aria-label="Open skincare project">&#8599;</a></div>
+                            <p>A JavaScript skincare dashboard project currently being developed and refined in the repository.</p>
+                            <div class="project-tags"><span class="project-tag">JavaScript</span><span class="project-tag">Vite</span></div>
+                            <div class="project-actions"><a href="https://github.com/PotnuruKushalavedas/skincare" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">&rarr; Code</a></div>
                         </div>
                     </article>
                 </div>
@@ -1792,7 +1808,11 @@
         const previousProjectsButton = document.querySelector('.carousel-control.prev');
         const nextProjectsButton = document.querySelector('.carousel-control.next');
         let projectIndex = 0;
-        let touchStartX = 0;
+        let isDraggingProjects = false;
+        let dragStartX = 0;
+        let dragStartOffset = 0;
+        let dragCurrentOffset = 0;
+        let dragDistance = 0;
 
         const getProjectsPerView = () => {
             if (window.innerWidth <= 480) return 1;
@@ -1800,15 +1820,35 @@
             return 4;
         };
 
-        const updateProjectsCarousel = () => {
+        const getProjectsMetrics = () => {
             const projectsPerView = getProjectsPerView();
             const maxProjectIndex = Math.max(0, projectCards.length - projectsPerView);
             projectIndex = Math.min(projectIndex, maxProjectIndex);
             const cardWidth = projectCards[0].getBoundingClientRect().width;
             const cardGap = parseFloat(getComputedStyle(projectsGrid).gap) || 0;
-            projectsGrid.style.transform = `translateX(-${projectIndex * (cardWidth + cardGap)}px)`;
+            return { cardWidth, cardGap, maxProjectIndex };
+        };
+
+        const updateProjectsCarousel = () => {
+            const { cardWidth, cardGap, maxProjectIndex } = getProjectsMetrics();
+            const offset = projectIndex * (cardWidth + cardGap);
+            projectsGrid.style.transform = `translateX(-${offset}px)`;
             previousProjectsButton.disabled = projectIndex === 0;
             nextProjectsButton.disabled = projectIndex >= maxProjectIndex;
+        };
+
+        const snapProjectsCarousel = () => {
+            const { cardWidth, cardGap, maxProjectIndex } = getProjectsMetrics();
+            const cardStep = cardWidth + cardGap;
+            const nearestIndex = Math.round(Math.max(0, -dragCurrentOffset) / cardStep);
+            if (Math.abs(dragDistance) > 40) {
+                projectIndex = projectIndex + (dragDistance < 0 ? 1 : -1);
+            } else {
+                projectIndex = nearestIndex;
+            }
+            projectIndex = Math.max(0, Math.min(projectIndex, maxProjectIndex));
+            projectsGrid.classList.remove('is-dragging');
+            updateProjectsCarousel();
         };
 
         previousProjectsButton.addEventListener('click', () => {
@@ -1821,16 +1861,42 @@
             updateProjectsCarousel();
         });
 
-        projectsCarousel.addEventListener('touchstart', event => {
-            touchStartX = event.changedTouches[0].screenX;
-        }, { passive: true });
+        projectsGrid.addEventListener('pointerdown', event => {
+            if (event.button !== 0 && event.pointerType === 'mouse') return;
+            isDraggingProjects = true;
+            dragStartX = event.clientX;
+            const { cardWidth, cardGap } = getProjectsMetrics();
+            dragStartOffset = -(projectIndex * (cardWidth + cardGap));
+            dragCurrentOffset = dragStartOffset;
+            dragDistance = 0;
+            projectsGrid.classList.add('is-dragging');
+            projectsGrid.setPointerCapture(event.pointerId);
+            event.preventDefault();
+        });
 
-        projectsCarousel.addEventListener('touchend', event => {
-            const touchDistance = event.changedTouches[0].screenX - touchStartX;
-            if (Math.abs(touchDistance) < 40) return;
-            projectIndex += touchDistance < 0 ? 1 : -1;
-            updateProjectsCarousel();
-        }, { passive: true });
+        projectsGrid.addEventListener('pointermove', event => {
+            if (!isDraggingProjects) return;
+            const { cardWidth, cardGap, maxProjectIndex } = getProjectsMetrics();
+            const minOffset = -(maxProjectIndex * (cardWidth + cardGap));
+            dragDistance = event.clientX - dragStartX;
+            dragCurrentOffset = Math.min(0, Math.max(minOffset, dragStartOffset + dragDistance));
+            projectsGrid.style.transform = `translateX(${dragCurrentOffset}px)`;
+        });
+
+        projectsGrid.addEventListener('pointerup', event => {
+            if (!isDraggingProjects) return;
+            isDraggingProjects = false;
+            if (projectsGrid.hasPointerCapture(event.pointerId)) {
+                projectsGrid.releasePointerCapture(event.pointerId);
+            }
+            snapProjectsCarousel();
+        });
+
+        projectsGrid.addEventListener('pointercancel', () => {
+            if (!isDraggingProjects) return;
+            isDraggingProjects = false;
+            snapProjectsCarousel();
+        });
 
         window.addEventListener('resize', updateProjectsCarousel);
         updateProjectsCarousel();
